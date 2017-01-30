@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express');
 const db = require('./db');
+const googleImageSearch = require('./g-img');
 
 module.exports = function() {
   const api = express.Router();
@@ -19,16 +20,18 @@ module.exports = function() {
 
   api.get('/imagesearch/:q', function(req, res) {
     var query = req.params.q;
-    var offset = req.query.offset;
-    db.logSearchHistory(query)
-      .then(
-        function() {
-          res.send('success').end();
-        },
-        function(err) {
-          res.status(400).json({error: err.toString()}).end();
-        }
-      );
+    var offset = parseInt(req.query.offset) || 0;
+    db.logSearchHistory(query);
+    googleImageSearch(query, offset)
+    .then(
+      function(data) {
+        res.json(data).end();
+      },
+      function(err) {
+        var msg = err ? err.toString() : '';
+        res.status(400).json({error: msg}).end();
+      }
+    );
   });
 
   api.use(function(err, req, res, next) {
