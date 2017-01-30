@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express');
 const path = require('path');
+const api = require('./api');
 
 const app = express();
 const ASSET_PATH = path.join(__dirname, '../../asset/');
@@ -13,6 +14,8 @@ app.get('/', function(req, res) {
     root: BIN_PATH
   });
 });
+
+app.use('/api', api());
 
 app.use(function(err, req, res, next) {
   if(err) {
