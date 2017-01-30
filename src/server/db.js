@@ -22,7 +22,10 @@ module.exports = {
     return mongoose.disconnect();
   },
   getLatestHistory() {
-    return models.History.find().sort({time: -1}).limit(10).exec();
+    return models.History.find({}, {_id: 0, query: 1, time: 1})
+                 .sort({time: -1})
+                 .limit(10)
+                 .exec();
   },
   logSearchHistory(query) {
     return new models.History({query}).save();
