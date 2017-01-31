@@ -9,13 +9,13 @@ const BIN_PATH = path.join(__dirname, '../../bin/');
 
 app.use(express.static(BIN_PATH));
 app.use(express.static(ASSET_PATH));
-app.get('/', function(req, res) {
+app.use('/api', api());
+
+app.get('/*', function(req, res) {
   res.sendFile('index.html', {
     root: BIN_PATH
   });
 });
-
-app.use('/api', api());
 
 app.use(function(err, req, res, next) {
   if(err) {
