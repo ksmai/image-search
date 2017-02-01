@@ -22,8 +22,7 @@
         templateUrl: '/templates/main-template.html'
       })
       .when('/search/:query', {
-        templateUrl: '/templates/search-template.html',
-        controller: 'searchCtrl'
+        template: '<search-page></search-page>'
       })
       .otherwise({
         redirectTo: '/'

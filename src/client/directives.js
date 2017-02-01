@@ -38,3 +38,10 @@ exports.modal = function() {
     templateUrl: '/templates/modal-template.html'
   };
 };
+
+exports.searchPage = function() {
+  return {
+    templateUrl: '/templates/search-template.html',
+    controller: 'searchCtrl'
+  };
+};

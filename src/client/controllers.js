@@ -65,5 +65,9 @@ exports.searchCtrl = ['$scope', '$routeParams', '$http',
     $scope.clearError = function() {
       $scope.error = false;
     };
+
+    setTimeout(function() {
+      $scope.$emit('searchCtrl');
+    }, 0);
   }
 ];
