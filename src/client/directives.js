@@ -7,7 +7,8 @@ exports.searchBox = function() {
     restrict: 'E',
     scope: {
       initialValue: '@initialValue',
-      search: '&search'
+      search: '&search',
+      enter: '&enter'
     }
   };
 };
@@ -22,3 +23,18 @@ exports.autoFocus = ['$timeout', function($timeout) {
     }
   };
 }];
+
+exports.modal = function() {
+  return {
+    restrict: 'E',
+    scope: {
+      close: '&'
+    },
+    transclude: {
+      title: 'modalTitle',
+      body: 'modalBody',
+      footer: 'modalFooter'
+    },
+    templateUrl: '/templates/modal-template.html'
+  };
+};

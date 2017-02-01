@@ -1,7 +1,7 @@
 <div class="input-group">
   <input type="text" placeholder="Query here..." ng-model="inputValue"
           ng-change="changeQuery()" ng-trim="false" auto-focus
-          class="form-control">
+          class="form-control" ng-keypress="enter({evt: $event})">
   <span class="input-group-btn" ng-show="inputValue.length">
     <button class="btn btn-default" type="button"
             ng-click="search({query: inputValue})">
